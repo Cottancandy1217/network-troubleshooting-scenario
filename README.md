@@ -6,6 +6,14 @@ This project documents a simulated network outage scenario and the troubleshooti
 
 **Description:** A critical web server, `webserver01`, located in rack A, suddenly became inaccessible. Users reported "connection timed out" errors when attempting to access the website. The issue was reported at 14:30 on 2024-10-27.
 
+## Author
+Angelee Morquin
+
+## Contact
+
+* Email: sweety.angel1217@gmail.com
+* LinkedIn: https://ph.linkedin.com/in/angelee-morquin-934b51125/
+
 **Symptoms:**
 
 * Website inaccessible.
