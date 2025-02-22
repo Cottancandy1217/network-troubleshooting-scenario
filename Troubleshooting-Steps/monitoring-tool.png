@@ -1,1 +1,52 @@
+from PIL import Image, ImageDraw, ImageFont
 
+def create_monitoring_tool_image(filename="monitoring-tool.png"):
+    """Creates a sample monitoring tool image."""
+
+    width, height = 800, 600
+    image = Image.new("RGB", (width, height), "white")
+    draw = ImageDraw.Draw(image)
+
+    # Fonts
+    try:
+        title_font = ImageFont.truetype("arial.ttf", 24)  # Use a common font
+        text_font = ImageFont.truetype("arial.ttf", 14)
+    except OSError:
+        title_font = ImageFont.load_default()
+        text_font = ImageFont.load_default()
+
+    # Network Topology Map (Top Left)
+    draw.rectangle((20, 20, 380, 280), outline="black")
+    draw.text((30, 30), "Network Topology", font=title_font, fill="black")
+    draw.ellipse((50, 80, 80, 110), fill="green", outline="black")  # Router
+    draw.rectangle((120, 80, 150, 110), fill="green", outline="black") # Switch
+    draw.rectangle((200, 80, 230, 110), fill="red", outline="black") # Server (Down)
+    draw.line((80, 95, 120, 95), fill="black", width=2)
+    draw.line((150, 95, 200, 95), fill="black", width=2)
+    draw.text((60, 120), "Router", font=text_font, fill="black")
+    draw.text((130, 120), "Switch", font=text_font, fill="black")
+    draw.text((210, 120), "Server", font=text_font, fill="black")
+
+    # Bandwidth Utilization Graph (Top Right)
+    draw.rectangle((420, 20, 780, 280), outline="black")
+    draw.text((430, 30), "Bandwidth Usage", font=title_font, fill="black")
+    draw.line((450, 250, 750, 50), fill="blue", width=2)  # Sample graph line
+
+    # Server Performance Summary (Bottom Left)
+    draw.rectangle((20, 320, 380, 580), outline="black")
+    draw.text((30, 330), "Server Performance", font=title_font, fill="black")
+    draw.text((30, 370), "Server A: CPU 50%, Memory 60% (Green)", font=text_font, fill="black")
+    draw.text((30, 400), "Server B: CPU 90%, Memory 95% (Red)", font=text_font, fill="black")
+    draw.text((30, 430), "Server C: CPU 20%, Memory 30% (Green)", font=text_font, fill="black")
+
+    # Recent Events (Bottom Right)
+    draw.rectangle((420, 320, 780, 580), outline="black")
+    draw.text((430, 330), "Recent Events", font=title_font, fill="black")
+    draw.text((430, 370), "10:00: Server Down (Critical)", font=text_font, fill="red")
+    draw.text((430, 400), "10:05: High Bandwidth (Warning)", font=text_font, fill="orange")
+    draw.text((430, 430), "10:10: Interface Up (Info)", font=text_font, fill="green")
+
+    image.save(filename)
+    print(f"Image '{filename}' created.")
+
+create_monitoring_tool_image()
